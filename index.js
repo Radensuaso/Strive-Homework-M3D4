@@ -5,6 +5,7 @@ window.onload = () => {
   searchBtn.addEventListener("click", searchBook)
 }
 
+//cart to be changed
 const cart = []
 
 //function to add books to the cart
@@ -58,6 +59,7 @@ const ignoreBook = function (event) {
   card.remove()
 }
 
+//function to create and append cols to the row
 const createAndAppendCols = function (book) {
   const col = document.createElement("div")
   col.classList.add("col-12", "col-sm-6", "col-md-4", "col-lg-3", "mb-4")
@@ -85,6 +87,8 @@ const createAndAppendCols = function (book) {
   const ignoreButton = col.querySelector(".ignore-button")
   ignoreButton.addEventListener("click", ignoreBook)
 }
+
+//function to get initial books
 
 const getBooks = function (query) {
   fetch(`https://striveschool-api.herokuapp.com/${query}`)
