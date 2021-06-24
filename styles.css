@@ -1,0 +1,31 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9;
+}
+
+#books-container {
+  margin-top: 5rem;
+}
+
+#books-container .card img {
+  object-fit: cover;
+  width: 35rem;
+  height: 25rem;
+}
+
+#books-container .card-body h5 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+#cart {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+}
