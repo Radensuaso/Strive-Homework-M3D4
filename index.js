@@ -92,3 +92,17 @@ const getBooks = function (query) {
     })
     .catch(() => console.log("Error"))
 }
+
+// search for book function
+const searchBook = function () {
+  // select user's input
+  const userInput = document.querySelector(".search-text").value
+
+  // select books titles
+
+  const titleNodeList = document.querySelectorAll(".card-body h5")
+
+  /* const titleList = titleNodeList.map((titleNode) => titleNode.innerText) */
+
+  console.log(userInput)
+}
