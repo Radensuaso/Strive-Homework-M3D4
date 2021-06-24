@@ -1,5 +1,8 @@
 window.onload = () => {
   getBooks("books")
+
+  const searchBtn = document.querySelector(".search-btn")
+  searchBtn.addEventListener("click", searchBook)
 }
 
 const cart = []
@@ -104,5 +107,5 @@ const searchBook = function () {
 
   /* const titleList = titleNodeList.map((titleNode) => titleNode.innerText) */
 
-  console.log(userInput)
+  console.log(titleNodeList)
 }
