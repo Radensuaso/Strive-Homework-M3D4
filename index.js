@@ -55,7 +55,35 @@ const removeBookFromCart = function (event) {
 //function to ignore book
 const ignoreBook = function (event) {
   const card = event.currentTarget.closest(".col-12")
-  card.classList.add("d-none")
+  card.remove()
+}
+
+const createAndAppendCols = function (book) {
+  const col = document.createElement("div")
+  col.classList.add("col-12", "col-sm-6", "col-md-4", "col-lg-3", "mb-4")
+  col.innerHTML = `<div class="card">
+          <img src="${book.img}" class="card-img-top img-fluid" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">${book.title}</h5>
+            <p class="card-text"><i>${book.category}</i></p>
+            <p class="card-text"><b>€${book.price}</b></p>
+            <button class="add-to-cart btn btn-dark">Add to Cart</button>
+            <button class="remove-from-cart btn btn-danger d-none">Remove from cart</button> </br>
+            <button class="ignore-button btn btn-outline-secondary">Ignore</button>
+          </div>
+        </div>`
+
+  const row = document.querySelector("#books-container div.row")
+  row.appendChild(col)
+
+  const addButton = col.querySelector(".add-to-cart")
+  addButton.addEventListener("click", addBookToCart)
+
+  const removeButton = col.querySelector(".remove-from-cart")
+  removeButton.addEventListener("click", removeBookFromCart)
+
+  const ignoreButton = col.querySelector(".ignore-button")
+  ignoreButton.addEventListener("click", ignoreBook)
 }
 
 const getBooks = function (query) {
@@ -63,33 +91,7 @@ const getBooks = function (query) {
     .then((response) => response.json())
     .then((booksList) => {
       console.log(booksList)
-      booksList.forEach((book) => {
-        const col = document.createElement("div")
-        col.classList.add("col-12", "col-sm-6", "col-md-4", "col-lg-3", "mb-4")
-        col.innerHTML = `<div class="card">
-        <img src="${book.img}" class="card-img-top img-fluid" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">${book.title}</h5>
-          <p class="card-text"><i>${book.category}</i></p>
-          <p class="card-text"><b>€${book.price}</b></p>
-          <button class="add-to-cart btn btn-dark">Add to Cart</button>
-          <button class="remove-from-cart btn btn-danger d-none">Remove from cart</button> </br>
-          <button class="ignore-button btn btn-outline-secondary">Ignore</button>
-        </div>
-      </div>`
-
-        const row = document.querySelector("#books-container div.row")
-        row.appendChild(col)
-
-        const addButton = col.querySelector(".add-to-cart")
-        addButton.addEventListener("click", addBookToCart)
-
-        const removeButton = col.querySelector(".remove-from-cart")
-        removeButton.addEventListener("click", removeBookFromCart)
-
-        const ignoreButton = col.querySelector(".ignore-button")
-        ignoreButton.addEventListener("click", ignoreBook)
-      })
+      booksList.forEach((book) => createAndAppendCols(book))
     })
     .catch(() => alert("Error"))
 }
@@ -97,14 +99,24 @@ const getBooks = function (query) {
 // search for book function
 const searchBook = function () {
   // select user's input
-  const userInput = document.querySelector(".search-text").value
+  const userInput = document.querySelector(".search-text").value.toLowerCase()
+  console.log(userInput)
 
-  // select books titles
+  const colsList = document.querySelectorAll("#books-container .row .col-12")
+  colsList.forEach((col) => col.remove())
 
-  const titleNodeList = document.querySelectorAll(".card-body h5")
+  const getSearchedBooks = function (query) {
+    fetch(`https://striveschool-api.herokuapp.com/${query}`)
+      .then((response) => response.json())
+      .then((booksList) => {
+        console.log(booksList)
+        booksList.forEach((book) => {
+          if (book.title.toLowerCase().includes(userInput))
+            createAndAppendCols(book)
+        })
+      })
+      .catch(() => alert("Error"))
+  }
 
-  const titleList = []
-  titleNodeList.forEach((titleNode) => titleList.push(titleNode.innerText))
-
-  console.log(titleList)
+  getSearchedBooks("books")
 }
