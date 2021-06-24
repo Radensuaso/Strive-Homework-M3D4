@@ -27,7 +27,6 @@ const addBookToCart = function (event) {
 
   const cartQuantity = document.querySelector("#cart span")
   cartQuantity.innerText = `${cart.length}`
-  console.log(cart)
 }
 
 //function to remove books from the cart
@@ -51,7 +50,6 @@ const removeBookFromCart = function (event) {
 
   const cartQuantity = document.querySelector("#cart span")
   cartQuantity.innerText = `${cart.length}`
-  console.log(cart)
 }
 
 //function to ignore book
@@ -74,9 +72,9 @@ const getBooks = function (query) {
           <h5 class="card-title">${book.title}</h5>
           <p class="card-text"><i>${book.category}</i></p>
           <p class="card-text"><b>€${book.price}</b></p>
-          <a href="#" class="add-to-cart btn btn-dark">Add to Cart</a>
-          <a href="#" class="remove-from-cart btn btn-danger d-none">Remove from cart</a> </br>
-          <a class="ignore-button btn btn-outline-secondary" href="#" role="button">Ignore</a>
+          <button class="add-to-cart btn btn-dark">Add to Cart</button>
+          <button class="remove-from-cart btn btn-danger d-none">Remove from cart</button> </br>
+          <button class="ignore-button btn btn-outline-secondary">Ignore</button>
         </div>
       </div>`
 
@@ -93,7 +91,7 @@ const getBooks = function (query) {
         ignoreButton.addEventListener("click", ignoreBook)
       })
     })
-    .catch(() => console.log("Error"))
+    .catch(() => alert("Error"))
 }
 
 // search for book function
@@ -105,7 +103,8 @@ const searchBook = function () {
 
   const titleNodeList = document.querySelectorAll(".card-body h5")
 
-  /* const titleList = titleNodeList.map((titleNode) => titleNode.innerText) */
+  const titleList = []
+  titleNodeList.forEach((titleNode) => titleList.push(titleNode.innerText))
 
-  console.log(titleNodeList)
+  console.log(titleList)
 }
