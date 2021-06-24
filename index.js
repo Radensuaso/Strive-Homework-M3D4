@@ -51,6 +51,12 @@ const removeBookFromCart = function (event) {
   console.log(cart)
 }
 
+//function to ignore book
+const ignoreBook = function (event) {
+  const card = event.currentTarget.closest(".col-12")
+  card.classList.add("d-none")
+}
+
 const getBooks = function (query) {
   fetch(`https://striveschool-api.herokuapp.com/${query}`)
     .then((response) => response.json())
@@ -66,7 +72,8 @@ const getBooks = function (query) {
           <p class="card-text"><i>${book.category}</i></p>
           <p class="card-text"><b>€${book.price}</b></p>
           <a href="#" class="add-to-cart btn btn-dark">Add to Cart</a>
-          <a href="#" class="remove-from-cart btn btn-danger d-none">Remove from cart</a>
+          <a href="#" class="remove-from-cart btn btn-danger d-none">Remove from cart</a> </br>
+          <a class="ignore-button btn btn-outline-secondary" href="#" role="button">Ignore</a>
         </div>
       </div>`
 
@@ -78,6 +85,9 @@ const getBooks = function (query) {
 
         const removeButton = col.querySelector(".remove-from-cart")
         removeButton.addEventListener("click", removeBookFromCart)
+
+        const ignoreButton = col.querySelector(".ignore-button")
+        ignoreButton.addEventListener("click", ignoreBook)
       })
     })
     .catch(() => console.log("Error"))
