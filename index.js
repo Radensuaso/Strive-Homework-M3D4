@@ -1,12 +1,15 @@
 window.onload = () => {
   getBooks("books")
 
-  const searchBtn = document.querySelector(".search-btn")
+  const searchBtn = document.getElementById("search-btn")
   searchBtn.addEventListener("click", searchBook)
+
+  const emptyBtn = document.getElementById("empty-cart")
+  emptyBtn.addEventListener("click", emptyCart)
 }
 
 //cart to be changed
-const cart = []
+let cart = []
 
 //function to add books to the cart
 
@@ -28,6 +31,14 @@ const addBookToCart = function (event) {
 
   const cartQuantity = document.querySelector("#cart span")
   cartQuantity.innerText = `${cart.length}`
+
+  const cartIcon = document.querySelector(".bi-cart")
+  const emptyCartBtn = document.getElementById("empty-cart")
+  if (cart.length > 0) {
+    cartQuantity.classList.add("text-success")
+    cartIcon.classList.add("text-success")
+    emptyCartBtn.classList.remove("d-none")
+  }
 }
 
 //function to remove books from the cart
@@ -51,6 +62,14 @@ const removeBookFromCart = function (event) {
 
   const cartQuantity = document.querySelector("#cart span")
   cartQuantity.innerText = `${cart.length}`
+
+  const cartIcon = document.querySelector(".bi-cart")
+  const emptyCartBtn = document.getElementById("empty-cart")
+  if (cart.length === 0) {
+    cartQuantity.classList.remove("text-success")
+    cartIcon.classList.remove("text-success")
+    emptyCartBtn.classList.add("d-none")
+  }
 }
 
 //function to ignore book
@@ -103,7 +122,7 @@ const getBooks = function (query) {
 // search for book function
 const searchBook = function () {
   // select user's input
-  const userInput = document.querySelector(".search-text").value.toLowerCase()
+  const userInput = document.querySelector("#search-text").value.toLowerCase()
   console.log(userInput)
 
   const colsList = document.querySelectorAll("#books-container .row .col-12")
@@ -123,4 +142,34 @@ const searchBook = function () {
   }
 
   getSearchedBooks("books")
+}
+
+//function to empty cart
+const emptyCart = function () {
+  // here we clear we change the background of every card to the default
+  const cardArray = document.getElementsByClassName("card")
+  ;[...cardArray].forEach((card) => {
+    if (card.classList.contains("bg-success")) {
+      card.classList.remove("bg-success")
+      card.classList.add("bg-light")
+
+      const addButton = card.querySelector(".add-to-cart")
+      addButton.classList.toggle("d-none")
+      const removeButton = card.querySelector(".remove-from-cart")
+      removeButton.classList.toggle("d-none")
+    }
+
+    //Empty the cart array
+    cart = []
+
+    //Here we actualize the number of books in the cart
+    const cartQuantity = document.querySelector("#cart span")
+    cartQuantity.innerText = `${cart.length}`
+
+    const cartIcon = document.querySelector(".bi-cart")
+    const emptyCartBtn = document.getElementById("empty-cart")
+    cartIcon.classList.remove("text-success")
+    cartQuantity.classList.remove("text-success")
+    emptyCartBtn.classList.add("d-none")
+  })
 }
