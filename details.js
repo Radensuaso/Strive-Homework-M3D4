@@ -19,11 +19,17 @@ const getChosenBook = function (query) {
         switch (book.title) {
           case selectedBook:
             h2ChosenBook.innerText = book.title
-            const bookImg = document.createElement("img")
-            bookImg.src = `${book.img}`
-            bookImg.alt = `${book.title}`
-            bookImg.classList.add("img-fluid", "col-6")
-            row.appendChild(bookImg)
+            const bookImgDiv = document.createElement("div")
+            bookImgDiv.classList.add("col-12", "col-md-8", "col-lg-6")
+            bookImgDiv.innerHTML = `<img class="img-fluid rounded-border" src="${book.img}" alt="${book.title}">`
+            row.appendChild(bookImgDiv)
+
+            const infoDiv = document.createElement("div")
+            infoDiv.classList.add("col-12")
+            infoDiv.innerHTML = `
+            <p><b>Category:</b> <i>${book.category}</i></p>
+            <p><b>€${book.price}</b></p>`
+            row.appendChild(infoDiv)
             break
         }
       })

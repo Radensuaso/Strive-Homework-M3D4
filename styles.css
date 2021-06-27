@@ -22,7 +22,7 @@ body {
   height: 25rem;
 }
 
-#books-container .card-body h5 {
+#books-container .card-body a {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -43,4 +43,12 @@ body {
 /* Details page */
 #chosen-book-container {
   margin-top: 5rem;
+}
+
+.rounded-border {
+  border-radius: 1rem;
+}
+
+#chosen-book-container p {
+  font-size: 2rem;
 }

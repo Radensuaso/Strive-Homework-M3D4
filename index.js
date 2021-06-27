@@ -83,9 +83,9 @@ const createAndAppendCols = function (book) {
   const col = document.createElement("div")
   col.classList.add("col-12", "col-sm-6", "col-md-4", "col-lg-3", "mb-4")
   col.innerHTML = `<div class="card">
-          <a href="./details.html?Book=${book.title}" target="blank"><img src="${book.img}" class="card-img-top img-fluid" alt="${book.title}"></a>
+          <a href="./details.html?Book=${book.title}" target="_blank"><img src="${book.img}" class="card-img-top img-fluid" alt="${book.title}"></a>
           <div class="card-body">
-            <a href="./details.html?Book=${book.title}"><h5 class="card-title">${book.title}</h5></a>
+            <a href="./details.html?Book=${book.title}" target="_blank><h5 class="card-title">${book.title}</h5></a>
             <p class="card-text"><i>${book.category}</i></p>
             <p class="card-text"><b>€${book.price}</b></p>
             <button class="add-to-cart btn btn-dark">Add to Cart</button>
