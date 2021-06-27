@@ -123,7 +123,6 @@ const getBooks = function (query) {
 const searchBook = function () {
   // select user's input
   const userInput = document.querySelector("#search-text").value.toLowerCase()
-  console.log(userInput)
 
   const colsList = document.querySelectorAll("#books-container .row .col-12")
   colsList.forEach((col) => col.remove())
