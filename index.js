@@ -37,7 +37,7 @@ const addBookToCart = function (event) {
   if (cart.length > 0) {
     cartQuantity.classList.add("text-success")
     cartIcon.classList.add("text-success")
-    emptyCartBtn.classList.remove("d-none")
+    emptyCartBtn.classList.remove("invisible")
   }
 }
 
@@ -68,7 +68,7 @@ const removeBookFromCart = function (event) {
   if (cart.length === 0) {
     cartQuantity.classList.remove("text-success")
     cartIcon.classList.remove("text-success")
-    emptyCartBtn.classList.add("d-none")
+    emptyCartBtn.classList.add("invisible")
   }
 }
 
@@ -83,9 +83,9 @@ const createAndAppendCols = function (book) {
   const col = document.createElement("div")
   col.classList.add("col-12", "col-sm-6", "col-md-4", "col-lg-3", "mb-4")
   col.innerHTML = `<div class="card">
-          <img src="${book.img}" class="card-img-top img-fluid" alt="...">
+          <a href="./details.html?Book=${book.title}" target="blank"><img src="${book.img}" class="card-img-top img-fluid" alt="${book.title}"></a>
           <div class="card-body">
-            <h5 class="card-title">${book.title}</h5>
+            <a href="./details.html?Book=${book.title}"><h5 class="card-title">${book.title}</h5></a>
             <p class="card-text"><i>${book.category}</i></p>
             <p class="card-text"><b>€${book.price}</b></p>
             <button class="add-to-cart btn btn-dark">Add to Cart</button>
@@ -170,6 +170,6 @@ const emptyCart = function () {
     const emptyCartBtn = document.getElementById("empty-cart")
     cartIcon.classList.remove("text-success")
     cartQuantity.classList.remove("text-success")
-    emptyCartBtn.classList.add("d-none")
+    emptyCartBtn.classList.add("invisible")
   })
 }

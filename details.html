@@ -48,40 +48,13 @@
                 >Home <span class="sr-only">(current)</span></a
               >
             </li>
-            <form class="d-flex ml-3">
-              <input
-                id="search-text"
-                class="form-control mr-1"
-                type="text"
-                placeholder="Search a book"
-              />
-              <button
-                id="search-btn"
-                type="button"
-                class="btn btn-outline-secondary"
-              >
-                Search
-              </button>
-            </form>
           </ul>
-
-          <div id="cart" class="d-flex align-items-center">
-            <button
-              id="empty-cart"
-              type="button"
-              class="btn btn-danger mr-3 invisible"
-            >
-              Empty Cart
-            </button>
-            <i class="bi bi-cart"></i><span style="width: 2rem">0</span>
-          </div>
         </div>
       </div>
     </nav>
-    <div id="books-container" class="container-md">
-      <h2>Buy Our Books!</h2>
-
-      <div class="row mt-3"></div>
+    <div id="chosen-book-container" class="container-md">
+      <h2 id="chosen-book"></h2>
+      <div class="row"></div>
     </div>
 
     <script
@@ -94,6 +67,6 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
-    <script src="index.js"></script>
+    <script src="details.js"></script>
   </body>
 </html>
